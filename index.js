@@ -54,7 +54,7 @@ export const pinata = new PinataSDK({
   pinataGatewayKey: PINATA_APIKey
 });
 
-app.get("/compare-faces", async (req, res) => {
+app.get("/api/compare-faces", async (req, res) => {
   try {
     const selfieUrl = req.query.selfie_url;
     const eventUrl = req.query.image_url;
@@ -67,12 +67,12 @@ app.get("/compare-faces", async (req, res) => {
         .json({ error: "Please provide selfie_url and image_url" });
     }
 
-    // 1) Validate the extension
-    if (!isValidImageExtension(selfieUrl) || !isValidImageExtension(eventUrl)) {
-      return res
-        .status(400)
-        .json({ error: "Invalid image extension. Must be png/jpg/heic, etc." });
-    }
+    // // 1) Validate the extension
+    // if (!isValidImageExtension(selfieUrl) || !isValidImageExtension(eventUrl)) {
+    //   return res
+    //     .status(400)
+    //     .json({ error: "Invalid image extension. Must be png/jpg/heic, etc." });
+    // }
 
     // 3) Download the images to temp files
     const tempSelfiePath = await downloadImageToTempFile(selfieUrl, "selfie");
